@@ -1,7 +1,10 @@
 version: "3.9"
 services:
   web:
-    build: .
+    build: 
+      context: ./webapp
+    image: webapp
     ports:
       - "5001:5000"
+    restart: always
 
