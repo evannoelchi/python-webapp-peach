@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: docker-compose -f docker-compose.yml build --parallel
-    - run: docker tag webapp evannoelchi/webapp:2.0
+    - run: docker tag webapp evannoelchi/webapp
     - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
-    - run: docker push evannoelchi/webapp:2.0
+    - run: docker push evannoelchi/webapp
     
