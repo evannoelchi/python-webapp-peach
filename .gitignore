@@ -1,1 +1,9 @@
 env
+
+#Terraform files to ignore
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.log
+*.tfvars
+.terraform.lock.hcl
