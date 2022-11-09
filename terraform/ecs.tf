@@ -15,8 +15,8 @@ resource "aws_ecs_task_definition" "task" {
   ]
   execution_role_arn = aws_iam_role.fargate.arn
   network_mode       = "awsvpc"
-  cpu                = 256
-  memory             = 512
+  cpu                = 512
+  memory             = 2048
   container_definitions = jsonencode([
     {
       name      = local.container.name
@@ -37,7 +37,7 @@ resource "aws_ecs_service" "service" {
   name            = local.ecs.service_name
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.task.arn
-  desired_count   = 1
+  desired_count   = 3
 
   network_configuration {
     subnets          = [for s in data.aws_subnet.subnets : s.id]
