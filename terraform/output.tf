@@ -43,3 +43,26 @@ output "container_name" {
   value       = local.container.name
   description = "Container name for the ECS task"
 }
+
+output "DB_name" {
+  value       = aws_db_instance.rds_instance.db_name
+  description = "The name of the database"
+}
+
+output "DB_Engine" {
+  value       = aws_db_instance.rds_instance.engine
+  description = "The name of the database engine"
+}
+
+output "DB_Username" {
+  value       = aws_db_instance.rds_instance.username
+  description = "The login User of the database"
+}
+
+output "DB_Password" {
+  value       = aws_db_instance.rds_instance.password
+  description = "The login password of the database"
+}
+
+
+

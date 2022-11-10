@@ -26,14 +26,14 @@ class Item(db.Model):
 db.create_all()
 
 # -- retrieve a single user
-@app.route('/items/<id>', methods=['GET'])
+@app.route('/users/<id>', methods=['GET'])
 def get_item(id):
   item = Item.query.get(id)
   del item.__dict__['_sa_instance_state']
   return jsonify(item.__dict__)
 
 # -- get all the users in the database
-@app.route('/items', methods=['GET'])
+@app.route('/users', methods=['GET'])
 def get_items():
   items = []
   for item in db.session.query(Item).all():
@@ -42,7 +42,7 @@ def get_items():
   return jsonify(items)
 
 # -- create a new user
-@app.route('/items', methods=['POST'])
+@app.route('/users', methods=['POST'])
 def create_item():
   body = request.get_json()
   db.session.add(Item(body['fname'], body['lname'], body['email'], body['userpass']))
@@ -50,7 +50,7 @@ def create_item():
   return "user created"
 
 # -- update an existing user
-@app.route('/items/<id>', methods=['PUT'])
+@app.route('/users/<id>', methods=['PUT'])
 def update_item(id):
   body = request.get_json()
   db.session.query(Item).filter_by(id=id).update(
@@ -59,7 +59,7 @@ def update_item(id):
   return "user updated"
 
 # -- delete an existing user
-@app.route('/items/<id>', methods=['DELETE'])
+@app.route('/users/<id>', methods=['DELETE'])
 def delete_item(id):
   db.session.query(Item).filter_by(id=id).delete()
   db.session.commit()
