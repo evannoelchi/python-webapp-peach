@@ -1,7 +1,7 @@
 container = {
-  image = "particule/helloworld"
+  image = "pythonapp/crud"
 }
 
 vpc = {
-  id = "vpc-013e995664141ed30"
+  id = "vpc-033ff2656fa665643"
 }

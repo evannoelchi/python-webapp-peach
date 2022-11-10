@@ -30,7 +30,7 @@ locals {
 
   container_defaults = {
     name  = "application"
-    image = "particule/helloworld"
+    image = "pythonapp/crud"
     ports = [80]
   }
   container = merge(local.container_defaults, var.container)
