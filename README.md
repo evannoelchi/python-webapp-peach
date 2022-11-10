@@ -48,5 +48,6 @@
 - Intergrate a GH Actions workflow that automatically provisions the terraform files.
 - Define VPC, subnets and security group CIDR parameters instead of using defaults
 - Deploy containers on AWS EKS instead of ECS
+- Slack notification when workflow is successful or fails
 
 # Thank you!!!!
