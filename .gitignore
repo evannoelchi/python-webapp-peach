@@ -5,3 +5,6 @@ env
 *.log
 .terraform
 /.terraform/
+__pycache__
+build
+docker-compose.yml
