@@ -59,10 +59,6 @@ output "DB_Username" {
   description = "The login User of the database"
 }
 
-output "DB_Password" {
-  value       = aws_db_instance.rds_instance.password
-  description = "The login password of the database"
-}
 
 
 
