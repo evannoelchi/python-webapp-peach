@@ -1,11 +1,11 @@
 resource "aws_db_instance" "rds_instance" {
     allocated_storage = 20
-    identifier = "postgres"
+    identifier = "rds-db"
     storage_type = "gp2"
     engine = "postgres"
     engine_version = "13.7"
     instance_class = "db.t3.micro"
-    name = "db"
+    name = "flaskdb"
     username = "postgres"
     password = "postgres"
     publicly_accessible    = true

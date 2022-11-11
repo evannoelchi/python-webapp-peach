@@ -45,7 +45,7 @@ output "container_name" {
 }
 
 output "DB_name" {
-  value       = aws_db_instance.rds_instance.name
+  value       = aws_db_instance.rds_instance.db_name
   description = "The name of the database"
 }
 
