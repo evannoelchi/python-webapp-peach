@@ -1,6 +1,6 @@
 FROM python:3.6-slim-buster
 
-WORKDIR /app
+WORKDIR /src
 
 COPY requirements.txt .
 
@@ -10,6 +10,8 @@ COPY . .
 
 EXPOSE 80
 
+# COPY app.py /app
+
 ENV FLASK_APP=app.py
 
-ENTRYPOINT ["python3", "-m",  "flask", "run", "--host=0.0.0.0", "--port=80"]
+ENTRYPOINT ["python", "-m",  "flask", "run", "--host=0.0.0.0"]
