@@ -1,8 +1,12 @@
 variable "aws_region" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
 
 variable "cluster-name" {
   default = "terraform-eks-demo"
   type    = string
+}
+
+variable "aws_profile" {
+  default = "serverless"
 }
