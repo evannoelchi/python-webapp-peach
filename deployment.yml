@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: 356192475173.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+        image: 356192475173.dkr.ecr.us-east-1.amazonaws.com/webapp-repo::$IMAGE_TAG
         ports:
           - containerPort: 80
 
