@@ -10,4 +10,6 @@ COPY . .
 
 EXPOSE 80
 
-ENTRYPOINT ["flask", "run", "--host=0.0.0.0", "--port=80"]
+ENV FLASK_APP=app.py
+
+ENTRYPOINT ["python3", "-m",  "flask", "run", "--host=0.0.0.0", "--port=80"]
