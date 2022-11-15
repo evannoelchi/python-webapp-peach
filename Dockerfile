@@ -10,7 +10,7 @@ COPY . .
 
 EXPOSE 80
 
-# COPY app.py /app
+COPY app.py /src
 
 ENV FLASK_APP=app.py
 
