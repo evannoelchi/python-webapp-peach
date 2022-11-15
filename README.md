@@ -1,27 +1,51 @@
-# python-webapp-peach
-TASK
+# Project to build and deploy Web Application on containers with CICD and Terraform
 
-You are required to build a web application hosted on AWS. 
+<h3>Primary tools chosen to achieve the project requirements are as follows:</h3> 
 
-Infrastructure
+1. CICD - Github Actions workflow
+2. Containers - AWS ECR for docker image repository and  AWS EKS to deploy containers.
+3. Infrastructure provisioning - Terraform
+4. Code repository - Github
 
-- The web application should be served on a container. 
-- The container can be hosted on an orchestration engine such as Kubernetes (EKS) or ECS or an EC2 instance. (EKS would be a plus, however due to cost implications, running it on an EC2 instance is just as valid.)
-- The infrastructure on which the container runs should be provisioned using terraform.
-- The docker container should be deployed using CI/CD (of your choice). 
-- The code should be hosted on either GitHub or GitLab. 
+<h3>Pre-requisites</h3>
 
+1. You will need docker installed in your environment
+2. You will also need Postman to test API endpoints
+3. You will need to install PostgreSQL and pgAdmin to test RDS connection
 
-Note: Very little detail is provided here to gauge what kind of instinct you as an engineer have on provisioning infrastructure reliably. Consider things such as high availability, low latency and security. Please send through questions to my email address (grace.mukendi@peachpayments.com) should you have any.
+<h3>Step 1 - Clone Repo to your local environment</h3>
 
+  - Run  <code>git clone https://github.com/evannoelchi/python-webapp-peach.git</code>
 
+<h3>Step 2 - Provision resources on AWS with Terraform</h3>
 
-Web Application
+- Access terraform files run command - <code>cd terraform</code> from project directory
+- Run terraform commands to bring up the infrastructure - <code>terraform init</code>, 
+  <code>terraform plan</code>, <code>terraform apply -auto-approve</code>
+- RDS, ECR and EKS should be ready after this
+  (NB: Take note of outputs after running terraform cmds for important details about the       infrastructure )
+- Edit Inbound rules for RDS security group to Allow All TCP traffic.
+- Create connection with RDS in pgAdmin and test connection to DB, make sure connection is successful. 
 
-The web application renders a page that prompts for a name, last name, email address and password to ‘register’ for accessing our application. Once the details have been stored in the db (no need to validate email address), the user can login and view their profile which simply redisplays the information previously provided by the user. 
+<h3>Step 3 - Run Github Actions workflow to build and Deploy application on EKS cluster</h3>
 
-Another endpoint is made available for managers to analyse the behaviour of end users and prospective clients. Once a user has signed up, this information should be made available in the manager’s dashboard. The signing up process events should also be made available for the managers to see, in order for them to assess whether a user has completed sign up or not.
+- If there is a git push to the main branch the workflow automatically build and deploy the container image to the EKS cluster
+- GH Actions will show the processes of the deployment inorder
 
+<h3>Step 4 - Test the application using Postman</h3>
 
-Note: This section is the least important and should be attended to last. Ensure that your infrastructure is up and running and follows the guidelines specified before tackling this task. The language of choice is Python. You can host the application on a web server of your choice.
+- To create a new user, make a POST request at the endpoint /users
+- To get a single user, make a GET request, appending the id of the user we want to retrieve at the end of the /users path. For example /users/2 retrieves the user with id = 2.
+- To update an existing user, make a PUT request. Specify the id of the user we want to modify in the url and the new user in the body of the request.
+- Finally, to delete an existing user - for example, the user with id = 3 - we can make a DELETE quest at the path /users/3
 
+<h3>Step 5 - Destroy the resources</h3>
+- Delete container image in ECR in AWS Console.
+- Run <code>terraform destroy -auto-approve</code>. This will then destroy all the provisioned resources.
+
+<h3>Future improvements to consider</h3>
+
+- Intergrate a GH Actions workflow that automatically provisions the terraform files.
+- Slack notification when workflow is successful or fails
+
+# Thank you!!!!
